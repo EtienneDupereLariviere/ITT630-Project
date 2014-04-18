@@ -6,25 +6,11 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include "cell.h"
 
 #define SUDOKU_SIZE 9
 
 using namespace std;
-
-/* Struc declaration */
-struct Pos {
-    int line, column;
-    Pos(int l = 0, int c = 0) {
-        line = l;
-        column = c;
-    }
-};
-
-struct Cell {
-    string value;
-    vector<Pos> peers;
-    bool found = false;
-};
 
 typedef vector< vector<Cell> > Board;
 
@@ -49,7 +35,7 @@ int main() {
 
 	sudokuBoard = FillBoard();
 	
-	//sudokuBoard = BacktrackingSearch(sudokuBoard);
+	sudokuBoard = BacktrackingSearch(sudokuBoard);
 
 	PrintBoard(sudokuBoard);
 	
@@ -70,7 +56,7 @@ Board FillBoard() {
 	for (int i = 0; i < SUDOKU_SIZE; ++i)
 		for (int j = 0; j < SUDOKU_SIZE; ++j) {
 			input >> board[i][j].value;
-			board[i][j].found = true;
+			if (board[i][j].value != "0") board[i][j].found = true;
 		}
 	
 	input.close();
