@@ -17,7 +17,6 @@ struct Pos {
 
 class Cell {
     private:
-        void SetPeersToCell(int, int, int);
         void SetSquarePeers(int, int, int);
 		void SetLinePeers(int, int, int);
 		void SetColumnPeers(int, int, int);
