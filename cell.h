@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -16,17 +17,16 @@ struct Pos {
 
 class Cell {
     private:
-        void SetUnitsAndPeersToCell(int, int, int);
-        void SetSquareUnitAndPeers(int, int, int);
-        void SetRowUnitAndPeers(int, int, int);
-        void SetLineUnitAndPeers(int, int, int);
+        void SetPeersToCell(int, int, int);
+        void SetSquarePeers(int, int, int);
+		void SetLinePeers(int, int, int);
+		void SetColumnPeers(int, int, int);
     public:
         string value;
-        vector<Pos> units[3];
         vector<Pos> peers;
         bool found = false;
 
         Cell() {};
-        //Cell(const Cell&);
+        Cell(const Cell&);
         Cell(string, int, int, int);
 };
