@@ -10,7 +10,7 @@
 #include <ctime>
 #include "cell.h"
 
-#define SUDOKU_SIZE 9
+#define SUDOKU_SIZE 16
 #define DOMAIN16 "123456789ABCDEFG"
 #define DOMAIN9 "123456789"
 
@@ -59,7 +59,7 @@ Board FillBoard() {
 
 	if (SUDOKU_SIZE == 9) {
 		domain = DOMAIN9;
-		filename = "sudoku9.txt";
+		filename = "sudoku.in.txt";
 	}
 	else {
 		domain = DOMAIN16;
@@ -76,7 +76,7 @@ Board FillBoard() {
 	}
 	
 	// Start the timer
-	timerStart = std::clock();
+	timerStart = clock();
 
 	for (int i = 0; i < SUDOKU_SIZE; ++i)
 		for (int j = 0; j < SUDOKU_SIZE; ++j) {
