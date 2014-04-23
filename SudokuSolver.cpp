@@ -10,9 +10,8 @@
 #include <ctime>
 #include "cell.h"
 
-#define SUDOKU_SIZE 16
-#define DOMAIN16 "123456789ABCDEFG"
-#define DOMAIN9 "123456789"
+#define SUDOKU_SIZE 9
+#define DOMAIN "123456789"
 
 using namespace std;
 
@@ -34,9 +33,7 @@ int timerStart = 0;
 int timerDuration = 0;
 
 /* Main */
-//int main() {
-int main()
-{
+int main() {
 	Board sudokuBoard;
 
 	cout << "Initial sudoku : " << endl;
@@ -54,17 +51,7 @@ int main()
 
 /* Function to fill the board */
 Board FillBoard() {
-	string domain = "";
-	const char* filename = "";
-
-	if (SUDOKU_SIZE == 9) {
-		domain = DOMAIN9;
-		filename = "sudoku.in.txt";
-	}
-	else {
-		domain = DOMAIN16;
-		filename = "sudoku16_e.txt";
-	}
+	const char* filename = "sudoku.in.txt";
 	
 	Board board = Board(SUDOKU_SIZE, vector<Cell>(SUDOKU_SIZE));
 	Board initBoard = Board(SUDOKU_SIZE, vector<Cell>(SUDOKU_SIZE));
@@ -81,7 +68,7 @@ Board FillBoard() {
 	for (int i = 0; i < SUDOKU_SIZE; ++i)
 		for (int j = 0; j < SUDOKU_SIZE; ++j) {
 			input >> initBoard[i][j].value;
-			board[i][j] = Cell(domain, i, j, SUDOKU_SIZE);
+			board[i][j] = Cell(DOMAIN, i, j, SUDOKU_SIZE);
 		}
 	
 	input.close();
@@ -98,28 +85,23 @@ Board FillBoard() {
 
 /* Function to print the board */
 void PrintBoard(Board board) {
-	if (SUDOKU_SIZE == 9)
-		cout << "+-------+-------+-------+\n";
-	else
-		cout << "+---------+---------+---------+---------+" << endl;
-
+	cout << "+-------+-------+-------+\n";
+	
 	for (int i = 0; i < SUDOKU_SIZE; ++i) {
 		cout << "| ";
+		
 		for (int j = 0; j < SUDOKU_SIZE; ++j) {
 			if (board[i][j].value != "0") 
 				cout << board[i][j].value;
 			else
 				cout << ".";
 			cout << " ";
-			if ((j + 1) % (int)sqrt((double)SUDOKU_SIZE) == 0) cout << "| ";
+			if ((j + 1) % 3 == 0) cout << "| ";
 		}
-		if ((i + 1) % (int)sqrt((double)SUDOKU_SIZE) == 0) {
-			cout << endl;
-			if (SUDOKU_SIZE == 9)
-				cout << "+-------+-------+-------+";
-			else
-				cout << "+---------+---------+---------+---------+";
-		}
+		
+		if ((i + 1) % 3 == 0)
+			cout << endl << "+-------+-------+-------+";
+		
 		cout << endl;
 	}
 }
