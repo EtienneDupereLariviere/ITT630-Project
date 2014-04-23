@@ -51,7 +51,7 @@ void* threadStart(void* arg) {
 		counter++;
 		if(counter > maxIterations) { // Si on tourne en rond, c'est qu'on est bloqué (Algo pas assez puissant)
 			if(!sudoku->notSolvable) {
-				printf("Le programme est incapable de résoudre le Sudoku. Seuls des Sudokus faciles et certains de difficulté moyennes peuvent être résolus\n");
+				cout << "Le programme est incapable de résoudre le Sudoku. Seuls des Sudokus faciles et certains de difficulté moyennes peuvent être résolus" << endl;
 				sudoku->notSolvable = true; // afin d'afficher le message qu'une fois
 			}
 			pthread_exit(0);
